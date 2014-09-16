@@ -55,3 +55,6 @@ target/
 
 #eclipse
 .project
+
+#MacOS
+.DS_Store
