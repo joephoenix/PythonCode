@@ -55,6 +55,7 @@ target/
 
 #eclipse
 .project
+.pydevproject
 
 #MacOS
 .DS_Store
