@@ -1,0 +1,47 @@
+改进算法，选择合适的数据结构
+
+一个良好的算法能够对性能起到关键作用，因此性能改进的首要点是对算法的改进。在算法的时间复杂度排序上依次是：
+
+O(1) -> O(lg n) -> O(n lg n) -> O(n^2) -> O(n^3) -> O(n^k) -> O(k^n) -> O(n!)
+
+Python 字典中使用了 hash table，因此查找操作的复杂度为 O(1)，而 list 实际是个数组，在 list 中，
+查找需要遍历整个 list，其复杂度为 O(n)，因此对成员的查找访问等操作字典要比 list 更快。
+
+set 的 union， intersection，difference 操作要比 list 的迭代要快。
+因此如果涉及到求 list 交集，并集或者差的问题可以转换为 set 来操作。
+
+对循环的优化所遵循的原则是尽量减少循环过程中的计算量，有多重循环的尽量将内层的计算提到上一层。 
+
+python 中条件表达式是 lazy evaluation 的，也就是说如果存在条件表达式 if x and y，
+在 x 为 false 的情况下 y 表达式的值将不再计算。因此可以利用该特性在一定程度上提高程序效率。
+
+在字符串连接的使用尽量使用 join() 而不是 +
+
+当对字符串可以使用正则表达式或者内置函数来处理的时候，选择内置函数。
+如 str.isalpha()，str.isdigit()，str.startswith((‘x’, ‘yz’))，str.endswith((‘x’, ‘yz’))
+
+列表解析要比在循环中重新构建一个新的 list 更为高效，因此我们可以利用这一特性来提高运行的效率。
+生成器表达式则是在 2.4 中引入的新内容，语法和列表解析类似，但是在大数据量处理时，
+生成器表达式的优势较为明显，它并不创建一个列表，只是返回一个生成器，因此效率较高。
+
+如果需要交换两个变量的值使用 a,b=b,a 而不是借助中间变量 t=a;a=b;b=t；
+在循环的时候使用 xrange 而不是 range；
+使用局部变量，避免”global” 关键字。
+if done is not None 比语句 if done != None 更快，
+在耗时较多的循环中，可以把函数的调用改为内联的方式；
+使用级联比较 “x < y < z” 而不是 “x < y and y < z”；
+while 1 要比 while True 更快（当然后者的可读性更好）；
+build in 函数通常较快，add(a,b) 要优于 a+b。
+
+Python标准模块提供三种 profilers: cProfile,profile 以及 hotshot。
+
+psyco 是一个 just-in-time 的编译器，它能够在不改变源代码的情况下提高一定的性能，Psyco 将操作编译成有点优化的机器码，
+其操作分成三个不同的级别，有”运行时”、”编译时”和”虚拟时”变量。
+
+PyPy能够将 Python 代码转成 C， .NET， Java 等语言和平台的代码,PyPy 集成了一种即时 (JIT) 编译器。
+和许多编译器，解释器不同，它不关心 Python 代码的词法分析和语法树。
+
+Cython 是用 python 实现的一种语言，可以用来写 python 扩展，用它写出来的库都可以通过 import 来载入，性能上比 python 的快。
+cython 里可以载入 python 扩展 ( 比如 import math)，也可以载入 c 的库的头文件 ( 比如 :cdef extern from “math.h”),
+另外也可以用它来写 python代码,将关键部分重写成C扩展模块.
+Cython 代码与 python 不同，必须先编译，编译一般需要经过两个阶段，将 pyx文件编译为 .c 文件，再将 .c文件编译为 .so文件

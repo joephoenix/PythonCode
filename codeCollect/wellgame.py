@@ -11,18 +11,17 @@ def check_done():
 		if map[i][0] == map[i][1] == map[i][2] != " " or map[0][i] == map[1][i] == map[2][i] != " ":
 			print turn, "won!!!"
 			return True
-
-    if map[0][0] == map[1][1] == map[2][2] != " " or map[0][2] == map[1][1] == map[2][0] != " ":
-    	print(turn, "won!!!")
-    	return True
-
-    if " " not in in map[0] and " " not in map[1] and " " not in map[2]:
-    	print "Draw!"
-    	return True
-
-    return False
-
-
+		
+		if map[0][0] == map[1][1] == map[2][2] != " " or map[0][2] == map[1][1] == map[2][0] != " ":
+		    print(turn, "won!!!")
+		    return True
+		   
+		if " " not in map[0] and " " not in map[1] and " " not in map[2]:
+		    print "Draw!"
+		    return True
+		   
+    	return False
+    
 turn = "X"
 map = [[" "," "," "],
        [" "," "," "],
@@ -30,13 +29,13 @@ map = [[" "," "," "],
 
 done = False
 
-while done != Ture:
+while done != True:
 	print_board()
 
 	print turn, "'s turn"
 	print
 
-	moved = Flase
+	moved = False
 	while moved != True:
 		print "Please select position by typeing in a number between 1 and 9, see below for which number that is which position..."
 		print "7|8|9"
