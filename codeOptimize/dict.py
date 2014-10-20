@@ -4,7 +4,7 @@ t = time();
 list = ['a','b','is','python','jason','hello','hill','with','phone','test', 
 'dfdf','apple','pddf','ind','basic','none','baecr','var','bana','dd','wrd']
 
-#没有转化为字典比转化为字典耗时多一倍
+#change type list to dictonary
 list = dict.fromkeys(list, True);
 
 print(list)
